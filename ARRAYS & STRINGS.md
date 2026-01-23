@@ -1,109 +1,114 @@
-### **Merge \& Sort:**
+========================================
+DSA PRACTICE – LEETCODE (JAVA)
+========================================
 
-**class Solution {**
+This repository contains Java solutions for LeetCode DSA problems.
+Used for learning, revision, and interview preparation.
 
-    **public void merge(int\[] nums1, int m, int\[] nums2, int n) {**
+========================================
+MERGE & SORT
+========================================
 
-        **int i = m-1;**
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
 
-        **int j = n-1;**
+        while (i >= 0 && j >= 0) {
+            nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
+        }
 
-        **int k = m + n - 1;**
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
+    }
+}
 
-        **while(i >= 0 \&\& j >= 0){**
+========================================
+REMOVE ELEMENTS AND PRINT REMAINING
+========================================
 
-           ** nums1\[k--] = (nums1\[i] > nums2\[j]) ? nums1\[i--] : nums2\[j--];**
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int k = 0;
 
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[k++] = nums[i];
+            }
+        }
+        return k;
+    }
+}
 
+========================================
+PRINT 2ND HIGHEST NUMBER IN ARRAY
+========================================
 
-        **}**
+import java.util.Arrays;
 
-        **while (j >= 0) {**
+class Solution {
+    public int getSecondLargest(int[] arr) {
+        Arrays.sort(arr);
+        int n = arr.length;
+        int max = arr[n - 1];
 
-        **nums1\[k--] = nums2\[j--];**
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] < max) {
+                return arr[i];
+            }
+        }
+        return -1;
+    }
+}
 
-    **}**
+========================================
+MAX CONSECUTIVE ONES
+========================================
 
-    **}**
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int max = 0;
+        int current = 0;
 
-**}**
+        for (int num : nums) {
+            if (num == 1) {
+                current++;
+                max = Math.max(max, current);
+            } else {
+                current = 0;
+            }
+        }
+        return max;
+    }
+}
 
-### **Remove Elements And print remaining:**
+========================================
+MOVE ZEROES TO LAST
+========================================
 
-**class Solution {**
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int insertPos = 0;
 
-    **public int removeElement(int\[] nums, int val) {**
+        for (int num : nums) {
+            if (num != 0) {
+                nums[insertPos++] = num;
+            }
+        }
 
-        **int k = 0; // index for non-val elements**
+        while (insertPos < nums.length) {
+            nums[insertPos++] = 0;
+        }
+    }
+}
 
-
-
-        **for (int i = 0; i < nums.length; i++) {**
-
-            **if (nums\[i] != val) {**
-
-                **nums\[k] = nums\[i];**
-
-               ** k++;**
-
-           ** }**
-
-        **}**
-
-        **return k;**
-    **}**
-
-**}**
-
-
-
-### **Print the 2nd highest number in array:**
-
-**class Solution {**
-
-    **public int getSecondLargest(int\[] arr) {**
-
-        **// code here**
-
-        **Arrays.sort(arr);**
-
-       **int n = arr.length;**
-
-        **int k = arr\[n-1];**
-
-        
-
-       **for (int i = n - 2; i >= 0; i--) {**
-
-            **if (arr\[i] < k) {**
-
-                **return arr\[i];**
-
-            **}**
-
-        **}** 
-
-        **return -1;**
-
-    **}**
-
-**}**
-
- ### **Max Consecutive Ones:** 
-**class Solution {**
-    **public int findMaxConsecutiveOnes(int[] nums) {**
-        **int max = 0;**
-        **int current = 0;**
-        **for (int num : nums) {**
-            **if (num == 1) {**
-                **current++;**
-                **max = Math.max(max, current);**
-            **} else {**
-                **current = 0;**
-            **}**
-        **}**
-        **return max;**
-    **}**
-**}**
-
-
+========================================
+NOTES
+========================================
+Language: Java
+Platform: LeetCode
+Purpose: Interview Preparation
+Focus: Clean & readable code
+========================================
