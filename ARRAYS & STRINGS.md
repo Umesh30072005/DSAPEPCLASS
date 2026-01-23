@@ -1,30 +1,30 @@
-###  **Merge \& Sort:**  
+### **Merge \& Sort:**
 
 class Solution {
 
-&nbsp;   public void merge(int\[] nums1, int m, int\[] nums2, int n) {
+    public void merge(int\[] nums1, int m, int\[] nums2, int n) {
 
-&nbsp;       int i = m-1;
+        int i = m-1;
 
-&nbsp;       int j = n-1;
+        int j = n-1;
 
-&nbsp;       int k = m + n - 1;
+        int k = m + n - 1;
 
-&nbsp;       while(i >= 0 \&\& j >= 0){
+        while(i >= 0 \&\& j >= 0){
 
-&nbsp;           nums1\[k--] = (nums1\[i] > nums2\[j]) ? nums1\[i--] : nums2\[j--];
+            nums1\[k--] = (nums1\[i] > nums2\[j]) ? nums1\[i--] : nums2\[j--];
 
 
 
-&nbsp;       }
+        }
 
-&nbsp;       while (j >= 0) {
+        while (j >= 0) {
 
-&nbsp;       nums1\[k--] = nums2\[j--];
+        nums1\[k--] = nums2\[j--];
 
-&nbsp;   }
+    }
 
-&nbsp;   }
+    }
 
 }
 
@@ -32,31 +32,61 @@ class Solution {
 
 class Solution {
 
-&nbsp;   public int removeElement(int\[] nums, int val) {
+    public int removeElement(int\[] nums, int val) {
 
-&nbsp;       int k = 0; // index for non-val elements
+        int k = 0; // index for non-val elements
 
 
 
-&nbsp;       for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
 
-&nbsp;           if (nums\[i] != val) {
+            if (nums\[i] != val) {
 
-&nbsp;               nums\[k] = nums\[i];
+                nums\[k] = nums\[i];
 
-&nbsp;               k++;
+                k++;
 
-&nbsp;           }
+            }
 
-&nbsp;       }
+        }
 
-&nbsp;       return k; // number of elements left
+        return k; // number of elements left
 
-&nbsp;   }
+    }
 
 }
 
 
 
+### **Print the 2nd highest number in array:**
 
+**class Solution {**
+
+    **public int getSecondLargest(int\[] arr) {**
+
+        **// code here**
+
+        **Arrays.sort(arr);**
+
+       **int n = arr.length;**
+
+        **int k = arr\[n-1];**
+
+        
+
+       **for (int i = n - 2; i >= 0; i--) {**
+
+            **if (arr\[i] < k) {**
+
+                **return arr\[i];**
+
+            **}**
+
+        **}** 
+
+        **return -1;**
+
+    **}**
+
+**}**
 
