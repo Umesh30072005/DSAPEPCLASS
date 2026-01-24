@@ -167,6 +167,93 @@ class Solution {
     }
 }
 
+========================================
+ Triplet Sum in Array (maps)
+========================================
+
+import java.util.*;
+
+class Solution {
+    public boolean hasTripletSum(int arr[], int target) {
+
+        for (int i = 0; i < arr.length - 2; i++) {
+
+            HashMap<Integer, Integer> map = new HashMap<>();
+
+            for (int j = i + 1; j < arr.length; j++) {
+                int needed = target - (arr[i] + arr[j]);
+
+                if (map.containsKey(needed)) {
+                    return true;
+                }
+
+                map.put(arr[j], j);
+            }
+        }
+        return false;
+    }
+}
+
+========================================
+ Jump Game Array
+========================================
+
+class Solution {
+    public boolean canJump(int[] nums) {
+        int maxReach = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i > maxReach) return false;
+
+            maxReach = Math.max(maxReach, i + nums[i]);
+        }
+
+        return true;
+    }
+}
+
+========================================
+ Jump Game Array ||
+========================================
+
+class Solution {
+    public int jump(int[] nums) {
+        int jumps = 0;
+        int end = 0;
+        int maxreach = 0;
+        for(int i = 0;i<nums.length-1;i++){
+            maxreach = Math.max(maxreach, i+nums[i]);
+            if(i == end){
+                jumps++;
+                end = maxreach;
+            }
+        }
+        return jumps;
+    }
+}
+
+========================================
+H - Index 
+========================================
+
+import java.util.*;
+
+class Solution {
+    public int hIndex(int[] citations) {
+        Arrays.sort(citations);
+
+        int n = citations.length;
+
+        for (int i = 0; i < n; i++) {
+            int h = n - i;
+            if (citations[i] >= h) {
+                return h;
+            }
+        }
+        return 0;
+    }
+}
+
 
 ========================================
 NOTES
@@ -175,4 +262,5 @@ Language: Java
 Platform: LeetCode
 Purpose: Interview Preparation
 Focus: Clean & readable code
+O(notations) : (n^n, n!,2^n,n^3,n^2,nlogn,n,logn,1)
 ========================================
