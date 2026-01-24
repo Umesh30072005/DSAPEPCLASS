@@ -105,6 +105,44 @@ class Solution {
 }
 
 ========================================
+ Best Time to Buy and Sell Stock
+========================================
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxprofit = 0;
+        int minprice = Integer.MAX_VALUE;
+        for(int price : prices){
+            minprice = Math.min(minprice,price);
+            maxprofit = Math.max(maxprofit,price - minprice);
+        }
+        return maxprofit;
+    }
+    
+}
+========================================
+ Min Max Pair in an Array
+========================================
+
+class Solution {
+    public int minPairSum(int[] nums) {
+        Arrays.sort(nums);
+
+        int maxPairSum = 0;
+        int i = 0, j = nums.length - 1;
+
+        while (i < j) {
+            maxPairSum = Math.max(maxPairSum, nums[i] + nums[j]);
+            i++;
+            j--;
+        }
+
+        return maxPairSum;
+    }
+}
+
+
+========================================
 NOTES
 ========================================
 Language: Java
