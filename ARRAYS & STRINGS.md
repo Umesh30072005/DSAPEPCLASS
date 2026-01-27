@@ -294,6 +294,42 @@ class Solution {
     }
 }
 
+----------------(or)-----------------
+
+import java.util.Arrays;
+
+class Solution {
+    static boolean pairInSortedRotated(int arr[], int target) {
+        int n = arr.length;
+        if (n < 2) return false;
+        int i;
+        for (i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                break; 
+            }
+        }
+
+        
+        int left = (i + 1) % n; 
+        int right = i;           
+        while (left != right) {
+            int currentSum = arr[left] + arr[right];
+            
+            if (currentSum == target) {
+                return true;
+            }
+            
+            if (currentSum < target) {
+                left = (left + 1) % n;
+            } else {
+                right = (n + right - 1) % n;
+            }
+        }
+        
+        return false;
+    }
+}
+
 
 ========================================
 NOTES
