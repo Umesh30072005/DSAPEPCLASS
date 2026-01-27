@@ -272,6 +272,30 @@ class Solution {
 }
 
 ========================================
+Pair Sum in a Sorted and Rotated Array
+========================================
+
+import java.util.HashMap;
+
+class Solution {
+    static boolean pairInSortedRotated(int arr[], int target) {
+    
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < arr.length; i++) {
+            int complement = target - arr[i];
+            if (map.containsKey(complement)) {
+                return true;
+            }
+            map.put(arr[i], i);
+        }
+        
+        return false;
+    }
+}
+
+
+========================================
 NOTES
 ========================================
 Language: Java
