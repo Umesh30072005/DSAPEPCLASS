@@ -394,6 +394,31 @@ class Solution {
     }
 }
 
+========================================
+Max Sum SubArray
+========================================
+
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+
+        int n = arr.length;
+        int max_sum = Integer.MIN_VALUE;
+
+        for (int i = 0; i <= n - k; i++) {
+            int current = 0;
+
+            for (int j = 0; j < k; j++) {
+                current += arr[i + j];
+            }
+
+            max_sum = Math.max(current, max_sum);
+        }
+        return max_sum;
+    }
+}
+
+
+
 
 ========================================
 NOTES
