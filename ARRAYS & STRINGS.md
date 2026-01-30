@@ -514,6 +514,43 @@ class Solution {
 }
 
 ========================================
+Aggresive Cows
+========================================
+
+class Solution {
+    public int aggressiveCows(int[] stalls, int k) {
+        Arrays.sort(stalls);
+        int n = stalls.length;
+        int low = 1;
+        int high = stalls[n-1] - stalls[0];
+        int result = 0;
+        
+        while(low<=high){
+            int mid = low + (high - low)/2;
+            if(canplace(stalls,k,mid)){
+                result = mid;
+                low = mid+1;
+            }else{
+                high = mid-1;
+            }
+        }
+        return result;
+    }
+    private boolean canplace(int [] stalls,int k,int dist){
+        int cowplaced = 1;
+        int lastpos = stalls[0];
+        for(int i = 1;i<stalls.length;i++){
+            if(stalls[i] - lastpos >= dist){
+                cowplaced++;
+                lastpos = stalls[i];
+            }
+        }
+        return cowplaced >= k;
+    }
+}
+
+
+========================================
 NOTES
 ========================================
 Language: Java
