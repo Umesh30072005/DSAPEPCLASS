@@ -549,6 +549,43 @@ class Solution {
     }
 }
 
+========================================
+Capacity Of Ship Package within D Days
+========================================
+
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int n = weights.length;
+        int low = 0;
+        int high = 0;
+        for(int w : weights){
+            low = Math.max(low,w);
+            high += w;
+        } 
+        while(low < high){
+            int mid = low + (high - low)/2;
+            if(canship(weights,days,mid)){
+                high = mid;
+            }else{
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+    private boolean canship(int [] weights,int days, int capacity){
+        int daysneeded = 1;
+        int currentload = 0;
+        for(int w: weights){
+            if(currentload + w > capacity ){
+                daysneeded++;
+                currentload = 0;
+            }
+            currentload += w;
+        }
+            return daysneeded <= days;
+        
+    }
+}
 
 ========================================
 NOTES
