@@ -645,6 +645,42 @@ class Solution {
     }
 }
 
+========================================
+Valid Palindrome ||
+========================================
+
+class Solution {
+    public boolean validPalindrome(String s) {
+        
+        int start = 0;
+        int last = s.length()-1;
+        boolean skipped =false;
+        while(start<last){
+         if(s.charAt(start) == s.chatAt(last)){
+            start++;
+            last--;
+         } else{
+            if(skipped){
+                return false;
+            }
+            return isPal(s,start +1,last) || isPal(s,start,last-1);
+         }
+        }
+        return true;
+
+    }
+    private boolean isPAl(String s, int start,int last){
+        while(start<last){
+            if(s.charAt(start) != s.charAt(last)){
+                return false;
+            }
+            start++;
+            last--;
+        }
+        return true;
+    }
+}
+
 
 ========================================
 NOTES
