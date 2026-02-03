@@ -751,6 +751,25 @@ class Solution {
     }
 }
 
+========================================
+Sum Of Arrays Using Recurrsion
+========================================
+
+// User function Template for Java
+
+class Solution {
+    int arraySum(int arr[]) {
+        // code here
+        return sum(arr,0);
+    }
+    private int sum(int arr[], int index){
+        if(index == arr.length){
+            return 0;
+        }
+        return arr[index] + sum(arr,index + 1);
+    }
+}
+
 
 ========================================
 NOTES
