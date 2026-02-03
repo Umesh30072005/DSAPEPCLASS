@@ -770,6 +770,46 @@ class Solution {
     }
 }
 
+========================================
+Fibonacci number
+========================================
+
+class Solution {
+    public int fib(int n) {
+        if(n<=1) 
+        {
+            return n;
+        }
+        return fib(n-1) + fib(n-2);
+    }
+}
+
+========================================
+Climbing Stars
+========================================
+
+class Solution {
+    public int climbStairs(int n) {
+        if(n<=0){
+            return 0;
+        }
+        if(n == 1){
+            return 1;
+        }
+        if(n == 2){
+            return 2;
+        }
+        int onestepbefore = 2;
+        int twostepbefore = 1;
+        int currentstep = 0;
+        for(int i =2;i<n;i++){
+            currentstep = onestepbefore + twostepbefore;
+            twostepbefore = onestepbefore;
+            onestepbefore = currentstep;
+        }
+        return currentstep;
+    }
+}
 
 ========================================
 NOTES
