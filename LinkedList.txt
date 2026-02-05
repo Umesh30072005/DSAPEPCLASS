@@ -125,4 +125,104 @@ class Solution {
     }
 }
 -------------------------------------------------------------------------------
+Remove from the back :
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ArrayList<Integer> list = new ArrayList<>();
+        ListNode temp = head;
+        while(temp != null){
+            list.add(temp.val);
+            temp = temp.next;
+        }
+        int indextoremove = list.size() - n;
+        list.remove(indextoremove);
+
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+
+        for(int val : list){
+            curr.next = new ListNode(val);
+            curr = curr.next;
+        }
+        return dummy.next;
+
+
+    }
+}
+---------------------------------------------------------------------------------
+Removing the duplicates : 
+
+import java.util.*;
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) return null;
+
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        ListNode temp = head;
+        while (temp != null) {
+            list.add(temp.val);
+            temp = temp.next;
+        }
+
+        for (int i = 0; i < list.size() - 1; ) {
+            if (list.get(i).equals(list.get(i + 1))) {
+                list.remove(i + 1); 
+                
+            } else {
+                i++; 
+            }
+        }
+
+        
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        for (int val : list) {
+            curr.next = new ListNode(val);
+            curr = curr.next;
+        }
+
+        return dummy.next;
+    }
+}
+---------(OR)----------------------------------------------------------------
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode curr = head;
+        while (curr != null && curr.next != null) {
+            if (curr.val == curr.next.val) {
+                curr.next = curr.next.next;
+            } else {
+                curr = curr.next;
+            }
+        }
+        return head;
+    }
+}
+------------------------------------------------------------------------------
+Merge LL : 
+
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode();
+        ListNode cur = dummy;
+
+        while (list1 != null && list2 != null) {
+            if (list1.val > list2.val) {
+                cur.next = list2;
+                list2 = list2.next;
+            } else {
+                cur.next = list1;
+                list1 = list1.next;
+            }
+            cur = cur.next;
+        }
+        cur.next = (list1 != null) ? list1 : list2;
+        return dummy.next;        
+    }
+}
+------------------------------------------------------------------------------
 
