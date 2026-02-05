@@ -34,3 +34,70 @@ class Solution {
     }
 }
 -------------------------------------------------------------------
+Middle Of the LL:
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode a = head;
+        ListNode b = head;
+        while(b != null && b.next != null){
+            a = a.next;
+            b = b.next.next;
+        }
+        return a;
+        
+    }
+}
+--------------------------------------------------------------------
+Delete a Node in LL : 
+
+class Solution {
+    Node deleteNode(Node head, int x) {
+    
+        if (head == null) {
+            return null;
+        }
+
+        
+        if (x == 1) {
+            return head.next;
+        }
+
+        Node curr = head;
+
+    
+        for (int i = 1; i < x - 1 && curr.next != null; i++) {
+            curr = curr.next;
+        }
+
+    
+        if (curr.next != null) {
+            curr.next = curr.next.next;
+        }
+
+        return head;
+
+    }
+}
+-------------------------------------------------------------------------
+Insertion of a new node: 
+
+class Solution {
+    Node sortedInsert(Node head, int key) {
+        // Add your code here.
+        Node newNode = new Node(key);
+        
+        if(head == null || key<= head.data){
+            newNode.next = head;
+            return newNode;
+        }
+        Node curr = head;
+        while(curr.next != null && curr.next.data < key){
+            curr = curr.next;
+        }
+        newNode.next = curr.next;
+        curr.next = newNode;
+        return head;
+    }
+}
+-----------------------------------------------------------------------------
