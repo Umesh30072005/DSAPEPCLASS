@@ -151,3 +151,32 @@ public static int balancedTreasurePoint(int[] arr) {
     return -1;
 }
 ---------------------------------------------------------------------
+GemStone necklace pivote : 
+
+using binaray:
+public static int findSmallest(int[] gems) {
+    int left = 0;
+    int right = gems.length - 1;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (gems[mid] > gems[right]) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    return gems[left];
+}
+-------------------------(OR)-------------------------------------------
+public static int findSmallest(int[] gems) {
+
+    int min = gems[0];   // assume first element is smallest
+
+    for (int i = 1; i < gems.length; i++) {
+        if (gems[i] < min) {
+            min = gems[i];
+        }
+    }
+    return min;
+}
+-------------------------------------------------------------------------
