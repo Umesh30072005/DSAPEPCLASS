@@ -304,3 +304,63 @@ class Solution {
     }
 }
 ----------------------------------------------------------------------------------------
+Creating a new double ll : 
+
+class Solution {
+    Node constructDLL(int arr[]) {
+
+        if (arr.length == 0) return null;
+
+        
+        Node head = new Node(arr[0]);
+        Node curr = head;
+
+        
+        for (int i = 1; i < arr.length; i++) {
+            Node newNode = new Node(arr[i]);
+            curr.next = newNode;
+            newNode.prev = curr;
+            curr = newNode;
+        }
+
+        return head;
+    }
+}
+-----------------------------------------------------------------------------------------
+Deletion in double LL : 
+
+class Solution {
+    public Node delPos(Node head, int x) {
+        if (head == null) {
+            return null;
+        }
+
+        Node temp = head;
+
+        if (x == 1) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            }
+            return head;
+        }
+
+        for (int i = 1; temp != null && i < x; i++) {
+            temp = temp.next;
+        }
+
+        if (temp == null) {
+            return head;
+        }
+
+        if (temp.prev != null) {
+            temp.prev.next = temp.next;
+        }
+        if (temp.next != null) {
+            temp.next.prev = temp.prev;
+        }
+
+        return head;
+    }
+}
+------------------------------------------------
