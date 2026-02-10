@@ -1073,6 +1073,37 @@ class Solution {
         return nums.length - maxLen;
     }
 }
+
+
+========================================
+Search a 2D Array:
+========================================
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for(int [] num:matrix){
+            if((num[0] <= target && num[num.length-1] >= target) && bs(num,target,0,num.length-1)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean bs(int[] num,int target, int s, int e){
+        if(s>e){
+            return false;
+        }
+        int mid = s +(e-s)/2;
+        if(num[mid] == target){
+            return true;
+        }
+        if(num[mid] < target){
+            return bs(num,target,mid+1,e);
+        }
+        return bs(num,target,s,mid-1);
+    }
+}
+
+
 ========================================
 NOTES
 ========================================
