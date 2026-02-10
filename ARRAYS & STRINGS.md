@@ -1128,6 +1128,46 @@ class Solution {
 }
 
 ========================================
+Max traversal of matrix 
+========================================
+
+class Solution {
+    public ArrayList<Integer> boundaryTraversal(int mat[][]) {
+        // code here
+        ArrayList<Integer>result = new ArrayList<>();
+        
+        int rows = mat.length;
+        int cols = mat[0].length;
+        
+        if(rows == 1){
+            for(int j = 0;j<cols;j++){
+                result.add(mat[0][j]);
+            }
+            return result;
+        }
+        if(cols == 1){
+            for(int i = 0;i<rows;i++){
+                result.add(mat[i][0]);
+            }
+            return result;
+        }
+        for(int j = 0;j<cols;j++){
+            result.add(mat[0][j]);
+        }
+        for(int i = 1;i<rows -1;i++){
+            result.add(mat[i][cols -1]);
+        }
+        for(int j = cols -1; j>=0;j--){
+            result.add(mat[rows-1][j]);
+        }
+        for(int i = rows -2;i>=1;i--){
+            result.add(mat[i][0]);
+        }
+        return result;
+    }
+}
+
+========================================
 NOTES
 ========================================
 Language: Java
