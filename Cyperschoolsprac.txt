@@ -180,3 +180,26 @@ public static int findSmallest(int[] gems) {
     return min;
 }
 -------------------------------------------------------------------------
+Half Palendrome : 
+
+public static String isHalfPalindrome(String s) {
+    // add your code here
+    int n = s.length();
+    String sub;
+    if(n%2 == 0){
+        sub = s.substring(0,n/2);
+    }else{
+        sub = s.substring(0,n/2+1);
+    }
+    int l = 0;
+    int r = sub.length()-1;
+    while(l<r){
+        if(sub.charAt(l) != sub.charAt(r)){
+            return "NO";
+        }
+        l++;
+        r--;
+    }
+    return "YES";
+    }
+-----------------------------------------------------------------------------
