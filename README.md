@@ -5,9 +5,7 @@ This repo contains clean, well-structured, and easy-to-understand implementation
 Each topic is separated into folders for better readability and practice.
 
 ---
-
 ## 📁 Folder Structure
-
 ```
 DSA/
 │
