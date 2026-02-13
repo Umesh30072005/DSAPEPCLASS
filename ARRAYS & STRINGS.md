@@ -1324,6 +1324,58 @@ class Solution {
         }        
     }
 }
+========================================
+Merge K sorted arrays
+========================================
+
+import java.util.*;
+
+class Solution {
+    public List<Integer> solve(int[][] A) {
+
+        List<Integer> result = new ArrayList<>();
+
+        int n11 = A.length;
+        int n12 = A[0].length;
+
+        int top = 0, bottom = n11 - 1;
+        int left = 0, right = n12 - 1;
+
+        while (top <= bottom && left <= right) {
+
+            // Top row
+            for (int j = left; j <= right; j++) {
+                result.add(A[top][j]);
+            }
+            top++;
+
+            // Right column
+            for (int i = top; i <= bottom; i++) {
+                result.add(A[i][right]);
+            }
+            right--;
+
+            // Bottom row
+            if (top <= bottom) {
+                for (int j = right; j >= left; j--) {
+                    result.add(A[bottom][j]);
+                }
+                bottom--;
+            }
+
+            // Left column
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    result.add(A[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+}
+
 
 ========================================
 NOTES
