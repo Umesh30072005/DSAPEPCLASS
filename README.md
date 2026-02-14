@@ -3,7 +3,6 @@
 Welcome to my **DSA Repository** 👨‍💻✨
 This repo contains clean, well-structured, and easy-to-understand implementations of **Data Structures and Algorithms** written in **Java**.
 Each topic is separated into folders for better readability and practice.
-
 ---
 ## 📁 Folder Structure
 ```
