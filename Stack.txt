@@ -22,3 +22,77 @@ class Solution {
     }
 }
 --------------------------------------------------------------------------
+Next Greater elemenent of nums1 in in nums2:
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+        for(int i = nums2.length -1; i>=0;i--){
+            while(!stack.isEmpty() && stack.peek() <= nums2[i]){
+                stack.pop();
+            }
+            int no = stack.isEmpty() ? -1:stack.peek();
+            map.put(nums2[i],no);
+            stack.push(nums2[i]);
+        }
+        int[] ans = new int[nums1.length];
+        for(int i = 0;i<nums1.length;i++){
+            ans[i] = map.get(nums1[i]);
+        }
+        return ans;
+    }
+}
+---------------------------------------------------------------------------
+Next Greater element in circular array :
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int []result = new int[n];
+        Arrays.fill(result,-1);
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0;i<2*n;i++){
+            int idx = i%n;
+            while(!stack.isEmpty() && nums[stack.peek()] < nums[idx]){
+                result[stack.pop()] = nums[idx];
+                }
+                if(i<n){
+                 stack.push(idx);
+                }
+        }
+        return result;
+    }
+}
+------------------------------------------------------------------------------
+Asternoid Collision :
+
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+        for(int ast : asteroids){
+            boolean destroyed = false;
+
+            while(!stack.isEmpty() && ast<0 && stack.peek() >0){
+                if(stack.peek() < -ast){
+                    stack.pop();
+                    continue;
+                }
+                else if(stack.peek() == -ast){
+                    stack.pop();
+                }
+                destroyed = true;
+                break;
+            }
+            if(!destroyed){
+                stack.push(ast);
+            }
+        }
+        int [] result = new int[stack.size()];
+        for(int i = stack.size() -1;i>=0;i--){
+            result[i] = stack.pop();
+        }
+        return result;
+    }
+}
+--------------------------------------------------------------------------------
