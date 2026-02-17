@@ -1,0 +1,32 @@
+
+Height of a binary tree :
+
+class Solution {
+    public int height(Node root) {
+        // code here
+        if(root == null){
+            return -1;
+        }
+        int leftheight = height(root.left);
+        int rightheight = height(root.right);
+        
+        return 1 + Math.max(leftheight, rightheight);
+    }
+}
+----------------------------------------------------------------------
+Count child nodes:
+
+class Solution {
+    int countLeaves(Node node) {
+        // Your code
+        if(node == null){
+            return 0;
+            
+        }
+        if(node.left == null && node.right == null){
+            return 1;
+        }
+        return countLeaves(node.left) + countLeaves(node.right);
+    }
+}
+--------------------------------------------------------------------------------
