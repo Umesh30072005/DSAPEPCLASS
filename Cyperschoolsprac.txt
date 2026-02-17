@@ -239,3 +239,32 @@ public static String checkIfComplete(String sentence) {
     return "Yes";
 }
 ---------------------------------------------------------------------------
+Prefix parade :
+
+public static int countPrefixes(List<String> words, String s) {
+    // add your code here
+    int count  = 0;
+    for(String word : words){
+        if(s.startsWith(word)){
+            count++;
+        }
+    }
+    return count;
+
+}
+-----------------------------------------------------------------------------
+Greater common division string :
+
+static String solve(String str1, String str2) {
+    // add your code here
+    if(!(str1+str2).equals(str2+str1)){
+        return "";
+    }
+    int gcdlen = gcd(str1.length(),str2.length());
+    return str1.substring(0,gcdlen);
+}
+    static int gcd(int a,int b){
+        if(b == 0) return a;
+        return gcd(b,a%b);
+    }
+---------------------------------------------------------------------------------

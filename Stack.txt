@@ -96,3 +96,106 @@ class Solution {
     }
 }
 --------------------------------------------------------------------------------
+Lagest Retangle in histogram :
+import java.util.Stack;
+
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1);
+        int maxArea = 0;
+
+        for (int i = 0; i < heights.length; i++) {
+            while (stack.peek() != -1 && heights[i] <= heights[stack.peek()]) {
+                int height = heights[stack.pop()];
+                int width = i - stack.peek() - 1;
+                maxArea = Math.max(maxArea, height * width);
+            }
+            stack.push(i);
+        }
+
+        while (stack.peek() != -1) {
+            int height = heights[stack.pop()];
+            int width = heights.length - stack.peek() - 1;
+            maxArea = Math.max(maxArea, height * width);
+        }
+
+        return maxArea;
+    }
+}
+------------------------------------------------------------------------------------
+reverse first k of a Queue:
+
+class Solution {
+    public Queue<Integer> reverseFirstK(Queue<Integer> q, int k) {
+        if (q == null || k <= 0 || k > q.size()) {
+            return q;
+        }
+
+        Stack<Integer> stack = new Stack<>();
+
+        // 1. Push the first k elements into the stack
+        for (int i = 0; i < k; i++) {
+            stack.push(q.poll());
+        }
+
+        // 2. Enqueue them back to the rear (now in reverse order)
+        while (!stack.isEmpty()) {
+            q.add(stack.pop());
+        }
+
+        // 3. Move the remaining (n - k) elements to the back
+        int remaining = q.size() - k;
+        for (int i = 0; i < remaining; i++) {
+            q.add(q.poll());
+        }
+
+        return q;
+    }
+}
+----------------------------------------------------------------------------------
+Interleave the first off of the queue with the second of the queue:
+
+class Solution {
+    public void rearrangeQueue(Queue<Integer> q) {
+        // code here
+        int n = q.size();
+        Stack<Integer>stack = new Stack<>();
+        for(int i = 0;i<n/2;i++){
+            stack.push(q.remove());
+        }
+        while(!stack.isEmpty()){
+            q.add(stack.pop());
+        }
+        for(int i = 0;i<n/2;i++){
+            q.add(q.remove());
+        }
+        for(int i = 0;i<n/2;i++){
+            stack.push(q.remove());
+        }
+        while(!stack.isEmpty()){
+            q.add(stack.pop());
+            q.add(q.remove());
+        }
+    }
+}
+
+------------------------------------------------------------------------------------
+Daily temperature :
+
+class Solution {
+    public int[] dailyTemperatures(int[] temps) {
+        int[] results = new int[temps.length];
+        Stack<Integer> stack = new Stack<>();
+        /// UPVOTE !
+        for (int i = 0; i < temps.length; i++) {
+            while (!stack.isEmpty() && temps[stack.peek()] < temps[i]) {
+                results[stack.peek()] = i - stack.pop();
+            }
+            stack.push(i);
+        }
+
+        return results;
+    }
+}
+-----------------------------------------------------------------------------------
