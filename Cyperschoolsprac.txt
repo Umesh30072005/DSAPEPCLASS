@@ -309,3 +309,33 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2, int k) {
     return dummy.next;
 }
 ---------------------------------------------------------------------------------
+Add the borders of a matrix:
+
+public static int matrixBorderSum(int[][] grid) {
+    // add your code here
+    int row  = grid.length;
+    int col = grid[0].length;
+    int top = 0;
+    int bottom = row -1;
+    int left = 0;
+    int right = col -1;
+    int sum = 0;
+        for(int j = left;j<= right;j++){
+            sum += grid[top][j];
+        }
+        for(int i = top+1; i<= bottom;i++){
+            sum += grid[i][right];
+        }
+        if(top != bottom){
+            for(int j = right -1;j>=left;j--){
+                sum += grid[bottom][j];
+            }
+        }
+        if(left != right){
+            for(int i = bottom -1;i>top;i--){
+                sum += grid[i][left];
+            }
+        }
+        return sum;
+}
+---------------------------------------------------------------------------------
