@@ -1,0 +1,63 @@
+Kth largest element in an array :
+
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> minheap= new PriorityQueue <>();
+        for(int num : nums){
+            minheap.add(num);
+            if(minheap.size() > k){
+                minheap.poll();
+            }
+
+
+        }
+        return minheap.peek();
+    }
+}
+----------------------------------------------------------------------------------
+k largest elements :
+
+class Solution {
+    public ArrayList<Integer> kLargest(int[] arr, int k) {
+
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        
+        for (int num : arr) {
+            minHeap.add(num);
+            if (minHeap.size() > k) {
+                minHeap.poll(); 
+            }
+        }
+
+        ArrayList<Integer> result = new ArrayList<>();
+        while (!minHeap.isEmpty()) {
+            result.add(minHeap.poll());
+        }
+
+        Collections.sort(result, Collections.reverseOrder());
+
+        return result;
+    }
+}
+----------------------------------------------------------------------------------
+minimun cost of ropes :
+
+class Solution {
+    public static int minCost(int[] arr) {
+        // code here
+        PriorityQueue<Integer> minheap = new PriorityQueue<>();
+        for(int x : arr){
+            minheap.add(x);
+        }
+        int totalcost = 0;
+        while(minheap.size() > 1){
+            int first = minheap.poll();
+            int second = minheap.poll();
+            int cost = first + second;
+            totalcost += cost;
+            minheap.add(cost);
+        }
+        return totalcost;
+    }
+}
+------------------------------------------------------------------------------
