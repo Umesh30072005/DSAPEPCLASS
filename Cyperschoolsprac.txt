@@ -372,4 +372,53 @@ public static boolean isPalindrome(Node head) {
     return true;
 }
 ----------------------------------------------------------------------------------------
+Insert node a kth position in  a linked list :
 
+public static Node insertAtKthPosition(Node head, int data, int k) {
+    // add your code here
+    Node newnode = new Node(data);
+    if(head == null){
+        return newnode;
+    }
+    if(k == 1){
+        newnode.next = head;
+        head.prev = newnode;
+        return newnode;
+    }
+    Node temp = head;
+    int count = 1;
+    while(temp.next != null && count < k-1){
+        temp = temp.next;
+        count++;
+    }
+    if(temp.next == null){
+        temp.next = newnode;
+        newnode.prev = temp;
+        return head;
+    }
+    newnode.next = temp.next;
+    newnode.prev = temp;
+    temp.next.prev = newnode;
+    temp.next = newnode;
+    return head;
+}
+--------------------------------------------------------------------------------------
+Ealuvae nested braculate :
+
+public static int scoreBrackets(String s) {
+    // add your code here
+    int score = 0;
+    int depth =0;
+    for(int i = 0;i<s.length();i++){
+        if(s.charAt(i) == '(' ){
+            depth++;
+        }else{
+            depth--;
+            if(s.charAt(i-1) == '('){
+                score += 1 <<depth;
+            }
+        }
+    }
+    return score;
+}
+-----------------------------------------------------------------------------------------
