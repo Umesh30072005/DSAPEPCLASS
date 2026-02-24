@@ -422,3 +422,56 @@ public static int scoreBrackets(String s) {
     return score;
 }
 -----------------------------------------------------------------------------------------
+Next Tallest Building :
+
+public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
+    // add your code here
+    HashMap<Integer,Integer> map = new HashMap<>();
+    Stack<Integer>stack = new Stack<>();
+    for(int num : nums2){
+        while(!stack.isEmpty() && stack.peek() < num){
+            map.put(stack.pop(),num);
+        }
+        stack.push(num);
+    }
+    while(!stack.isEmpty()){
+        map.put(stack.pop(),-1);
+    }
+    int[] result = new int[nums1.length];
+    for(int i = 0;i<nums1.length;i++){
+        result[i] = map.get(nums1[i]);
+    }
+    return result;
+}
+------------------------------------------------------------------------------------------
+Cheif magical ingrediants:
+
+public static int sumSubarrayMins(int[] arr) {
+    // add your code here
+    int n = arr.length;
+    int mod = 1_000_000_007;
+    int[] left = new int[n];
+    int[] right = new int[n];
+    Stack<Integer>stack = new Stack<>();
+    for(int i = 0;i<n;i++){
+        while(!stack.isEmpty() && arr[stack.peek()] > arr[i]){
+            stack.pop();
+        }
+        left[i] = stack.isEmpty()?i+1 : i - stack.peek();
+        stack.push(i);
+    }
+    stack.clear();
+    for(int i = n-1;i>=0;i--){
+        while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
+            stack.pop();
+        }
+        right[i] = stack.isEmpty()?n-i: stack.peek() - i;
+        stack.push(i);
+    }
+    long ans = 0;
+    for(int i = 0;i<n;i++){
+        ans = (ans+(long)arr[i] * left[i] * right[i] ) % mod;
+    }
+    return (int)ans;
+}
+-------------------------------------------------------------------------------------------
