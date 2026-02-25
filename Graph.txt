@@ -1,0 +1,85 @@
+BFS of a graph : 
+
+class Solution {
+    public ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        int V = adj.size();
+        ArrayList<Integer> result = new ArrayList<>();
+        boolean visited = new boolean[V];
+        Queue<Integer>queue = new Queue<>();
+        queue.offer(0);
+        visited[0] = true;
+        while(!queue.isEmpty()){
+            int node = queue.poll();
+            result.add(node);
+            for(int neibour : adj.get(node)){
+                if(!visited[neibour]){
+                    visited[neibour] = true;
+                    queue.offer(neibour);
+                }
+            }
+        }
+        return result;
+        
+    }
+}
+-----------------------------------------------------------------------------------------
+Number of islands :
+
+class Solution {
+    public int numIslands(char[][] grid) {
+        int n=grid.length;
+        int m=grid[0].length;
+        if(n==0){
+            return 0;
+        }
+        int island=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'){
+                    dfs(grid,i,j);
+                        island++;
+                    
+                }
+            }
+        }
+        return island;
+    }
+    public static void dfs(char[][] grid,int i,int j){
+        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || '0'-grid[i][j]==0){
+            return;
+        }
+        grid[i][j]='0';
+        dfs(grid,i+1,j);
+        dfs(grid,i-1,j);
+        dfs(grid,i,j-1);
+        dfs(grid,i,j+1);
+    }
+}
+----------------------------------------------------------------------------------------------
+number of provineces ;
+
+class Solution {
+    public int findCircleNum(int[][] isConnected) {
+       int n = isConnected.length;
+       boolean[] visited = new boolean[n];
+       int provinces = 0;
+       for(int i = 0;i<n;i++){
+        if(!visited[i]){
+            dfs(i,isConnected,visited);
+            provinces++;
+        }
+       }
+       return provinces;
+    }
+    private void dfs(int city, int[][] isConnected,boolean[] visited){
+        visited[city] = true;
+        for(int j = 0;j<isConnected.length;j++){
+            if(isConnected[city][j] == 1 && !visited[j]){
+                dfs(j,isConnected,visited);
+            }
+        }
+    }
+}
+----------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
