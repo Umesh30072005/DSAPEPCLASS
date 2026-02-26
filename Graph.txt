@@ -82,4 +82,40 @@ class Solution {
     }
 }
 ----------------------------------------------------------------------------------------------
+Topological graph :
+
+class Solution {
+    public ArrayList<Integer> topoSort(int V, int[][] edges) {
+        // code here
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i = 0;i<V;i++){
+            adj.add(new ArrayList<>());
+        }
+        int[] indegree = new int[V];
+        for(int[] e : edges){
+            adj.get(e[0]).add(e[1]);
+            indegree[e[1]]++;
+        }
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+        ArrayList<Integer> topo = new ArrayList<>();
+        while(!q.isEmpty()){
+            int node = q.poll();
+            topo.add(node);
+            for (int nbr : adj.get(node)) {
+                indegree[nbr]--;
+                if (indegree[nbr] == 0) {
+                    q.add(nbr);
+                }
+            }
+        }
+        return topo;
+        
+    }
+}
+------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
