@@ -513,3 +513,22 @@ class Solution {
     }
 }
 -----------------------------------------------------------------------------------------------
+Theifs secrect code :
+
+public static int findLongestManuscriptSegment(String s) {
+    // Your implementation here
+    int left = 0;
+    int maxlen = 0;
+    int [] lastseen = new int[256];
+    Arrays.fill(lastseen,-1);
+    for(int right = 0;right<s.length();right++){
+        char ch = s.charAt(right);
+        if(lastseen[ch] >= left){
+            left = lastseen[ch]+1;
+        }
+        lastseen[ch] = right;
+        maxlen = Math.max(maxlen,right-left+1);
+    }
+    return maxlen;
+}
+---------------------------------------------------------------------------------------------
