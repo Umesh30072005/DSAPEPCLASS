@@ -55,7 +55,7 @@ DSA/
 
 ---
 
-## 🧩 Topics Covered
+## 🧩 Topics Covered 
 
 ### ✅ Arrays
 
