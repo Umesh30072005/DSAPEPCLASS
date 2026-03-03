@@ -130,9 +130,7 @@ java FileName
 ## 🛠 Language Used
 
 * **Java** ☕
-
 ---
-
 ## 🤝 Contributing
 
 Contributions are welcome!
